@@ -1,18 +1,19 @@
 <prototype>
   <common>
+	<!-- Setup System-->
     <problem_type>neutronics</problem_type>
     <spatial_method>sdm_pwld</spatial_method>
     <fem_type>fem_lump</fem_type>
     <geometry>xyz</geometry>
+	<!-- Use a single Energy group with 3 spacial dimmensions-->
     <ngroups>1</ngroups>
     <eg_floor>0.0</eg_floor>
     <dimensions>3</dimensions>
-     <energy_info_source>
-      <data_file>pdt-115g-fg_cnat.cx</data_file>
-    </energy_info_source>
     <iscat>0</iscat>
     <diagnostics_level>3</diagnostics_level>
+	<!-- Ignore Upscattering -->
     <no_upscattering>true</no_upscattering>
+	<!-- Set Tolerances -->
     <wgs_iterative_method>gmres</wgs_iterative_method>
     <wgs_gmres_restart_value>5</wgs_gmres_restart_value>
     <wgs_residual_tolerance>1.0e-8</wgs_residual_tolerance>
@@ -24,16 +25,29 @@
     <ags_residual_max_its>1000</ags_residual_max_its>
     <ags_pointwise_tolerance>1.0e-2</ags_pointwise_tolerance>
     <ags_pointwise_max_its>1</ags_pointwise_max_its>
+	<!-- Some Partition Stuff -->
     <partition_type>manual</partition_type>
     <partition_params>
-      <partition_x>2</partition_x>
-      <partition_y>2</partition_y>
+      <partition_x>1</partition_x>
+      <partition_y>1</partition_y>
       <partition_z>1</partition_z>
     </partition_params>
-    <cs_subset_agg_x>1</cs_subset_agg_x>
-    <cs_subset_agg_y>1</cs_subset_agg_y>
-    <cs_subset_agg_z>1</cs_subset_agg_z>
   </common>
+  <!-- Energy Groups-->
+    <groupsets>
+    <energy_set>
+      <ID>0</ID>
+	  <set_include>1</set_include>
+      <quad_info>
+        <quad_plevel>2</quad_plevel>
+        <quad_azimuthal>2</quad_azimuthal>
+        <quad_norm>12.566370614</quad_norm>
+        <quad_type>productgausslegcheb</quad_type>
+      </quad_info>
+      <angle_set_aggregation>polar</angle_set_aggregation>
+    </energy_set>
+  </groupsets>
+  <!-- Define system as 30x30x30 cube, 3 divisions per dimension-->
   <dimension>
 	<dimension.id>0</dimension.id>
 		<dim.division>
@@ -94,12 +108,6 @@
 			<dim.division.id>3.3</dim.division.id>
 		</dim.division>
   </dimension>
-  <edits>
-    <silo_output>off</silo_output>
-    <text_output>off</text_output>
-    <print_iteration_log>on</print_iteration_log>
-    <print_timing>on</print_timing>
-  </edits>
   <regions>
     <regions-edit_region>
       <edit_reg.id>detector</edit_reg.id>
@@ -110,51 +118,13 @@
    <material>BF3</material>
    <edit_region>detector</edit_region>
   </edit_region_material>
-  <groupsets>
-    <energy_set>
-      <ID>0</ID>
-      <block>
-        <begin>0</begin>
-        <end>3</end>
-      </block>
-      <quad_info>
-        <quad_plevel>2</quad_plevel>
-        <quad_azimuthal>2</quad_azimuthal>
-        <quad_norm>12.566370614</quad_norm>
-        <quad_type>productgausslegcheb</quad_type>
-      </quad_info>
-      <angle_set_aggregation>polar</angle_set_aggregation>
-    </energy_set>
-  </groupsets>
   <component_def>
-    <id>C</id>
-    <data_file>pdt-115g-fg_cnat.cx</data_file>
-    <scatt_order>0</scatt_order>
-  </component_def>
+  <!--material definitions, AmBe source, BF3 detector -->
   <material_def>
     <material_def.name>AmBe</material_def.name>
     <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
+      <material_def.component.id>1</material_def.component.id>
       <material_def.component.density>1.1649E-3</material_def.component.density> 
-    </material_def.component>
-    <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
-      <material_def.component.density>1.9077E-1</material_def.component.density> 
-    </material_def.component>
-     <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
-      <material_def.component.density>2.3298E-3</material_def.component.density> 
-    </material_def.component>
-  </material_def>
-  <material_def>
-    <material_def.name>Graphite</material_def.name>
-    <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
-      <material_def.component.density>8.5210E-2</material_def.component.density>
-    </material_def.component>
-    <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
-      <material_def.component.density>3.0672E-5</material_def.component.density>
     </material_def.component>
   </material_def>
   <material_def>
@@ -162,16 +132,39 @@
     <material_def.component>
       <material_def.component.id>C</material_def.component.id>
       <material_def.component.density>6.5138E-6</material_def.component.density>
-    </material_def.component>
-    <material_def.component>
-      <material_def.component.id>C</material_def.component.id>
-      <material_def.component.density>2.0146E-7</material_def.component.density>
-    </material_def.component>
-    <material_def.component>
-      <material_def.component.id>C</material_def.component.id>                  
-      <material_def.component.density>2.0146E-5</material_def.component.density>
-    </material_def.component>
   </material_def>
+  <!-- Define AmBe  point source in center of system-->
+  <source_material>
+    <source>AmBe</source>
+    <material>AmBe</material>
+  </source_material>
+     <named_sources>
+    <source_def>
+      <source_def_name>AmBe</source_def_name>
+      <intensity>12.566370614</intensity>
+    </source_def>
+  </named_sources>
+  <source_geometry>
+    <source_region>
+      <source_name>AmBe</source_name>
+      <source_dim_bounds>
+        <source_dim_bounds_dim>0</source_dim_bounds_dim>
+        <source_dim_start>15</source_dim_start>
+        <source_dim_end>15</source_dim_end>
+      </source_dim_bounds>
+      <source_dim_bounds>
+        <source_dim_bounds_dim>1</source_dim_bounds_dim>
+        <source_dim_start>15</source_dim_start>
+        <source_dim_end>15</source_dim_end>
+      </source_dim_bounds>
+      <source_dim_bounds>
+        <source_dim_bounds_dim>2</source_dim_bounds_dim>
+        <source_dim_start>15</source_dim_start>
+        <source_dim_end>1</source_dim_end>
+      </source_dim_bounds>
+    </source_region>
+  </source_geometry>
+  <!-- Boundry Definitions -->
   <boundary_info>
     <y_min_bound>
       <bound_type>vacuum</bound_type>
@@ -192,38 +185,7 @@
       <bound_type>vacuum</bound_type>
     </z_max_bound>
   </boundary_info>
-  <source_material>
-    <source>AmBe</source>
-    <material>AmBe</material>
-  </source_material>
-     <named_sources>
-    <source_def>
-      <source_def_name>AmBe</source_def_name>
-      <intensity>1.0</intensity>
-      <intensity>1.0</intensity>
-      <intensity>1.0</intensity>
-    </source_def>
-  </named_sources>
-  <source_geometry>
-    <source_region>
-      <source_name>AmBe</source_name>
-      <source_dim_bounds>
-        <source_dim_bounds_dim>0</source_dim_bounds_dim>
-        <source_dim_start>14</source_dim_start>
-        <source_dim_end>16</source_dim_end>
-      </source_dim_bounds>
-      <source_dim_bounds>
-        <source_dim_bounds_dim>1</source_dim_bounds_dim>
-        <source_dim_start>14</source_dim_start>
-        <source_dim_end>16</source_dim_end>
-      </source_dim_bounds>
-      <source_dim_bounds>
-        <source_dim_bounds_dim>2</source_dim_bounds_dim>
-        <source_dim_start>14</source_dim_start>
-        <source_dim_end>16</source_dim_end>
-      </source_dim_bounds>
-    </source_region>
-  </source_geometry>
+  <!-- define BF3 detector/QoI, 2x2x2 centered in top cube -->
   <QOI_def>
     <QOI_type>detector_response</QOI_type>
     <QOI_id>detecrr</QOI_id>
