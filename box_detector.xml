@@ -47,7 +47,7 @@
       <angle_set_aggregation>polar</angle_set_aggregation>
     </energy_set>
   </groupsets>
-  <!-- Define system as 30x30x30 cube, 3 divisions per dimension-->
+  <!-- Define system as 30x30x30 cube-->
   <dimension>
 	<dimension.id>0</dimension.id>
 		<dim.division>
@@ -57,16 +57,28 @@
 			<dim.division.id>1.1</dim.division.id>
 		</dim.division>
 		<dim.division>
-			<dim.division.cells>10</dim.division.cells>
+			<dim.division.cells>4</dim.division.cells>
 			<dim.division.start>10.0</dim.division.start>
-			<dim.division.end>20.0</dim.division.end>
+			<dim.division.end>14.0</dim.division.end>
 			<dim.division.id>1.2</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>2</dim.division.cells>
+			<dim.division.start>14.0</dim.division.start>
+			<dim.division.end>16.0</dim.division.end>
+			<dim.division.id>1.3</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>4</dim.division.cells>
+			<dim.division.start>16.0</dim.division.start>
+			<dim.division.end>20.0</dim.division.end>
+			<dim.division.id>1.4</dim.division.id>
 		</dim.division>
 		<dim.division>
 			<dim.division.cells>10</dim.division.cells>
 			<dim.division.start>20.0</dim.division.start>
 			<dim.division.end>30.0</dim.division.end>
-			<dim.division.id>1.3</dim.division.id>
+			<dim.division.id>1.5</dim.division.id>
 		</dim.division>
 	<dimension.id>1</dimension.id>
 		<dim.division>
@@ -76,17 +88,29 @@
 			<dim.division.id>2.1</dim.division.id>
 		</dim.division>
 		<dim.division>
-			<dim.division.cells>10</dim.division.cells>
+			<dim.division.cells>4</dim.division.cells>
 			<dim.division.start>10.0</dim.division.start>
-			<dim.division.end>20.0</dim.division.end>
+			<dim.division.end>14.0</dim.division.end>
 			<dim.division.id>2.2</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>2</dim.division.cells>
+			<dim.division.start>14.0</dim.division.start>
+			<dim.division.end>16.0</dim.division.end>
+			<dim.division.id>2.3</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>4</dim.division.cells>
+			<dim.division.start>16.0</dim.division.start>
+			<dim.division.end>20.0</dim.division.end>
+			<dim.division.id>2.4</dim.division.id>
 		</dim.division>
 		<dim.division>
 			<dim.division>
 			<dim.division.cells>10</dim.division.cells>
 			<dim.division.start>20.0</dim.division.start>
 			<dim.division.end>30.0</dim.division.end>
-			<dim.division.id>2.3</dim.division.id>
+			<dim.division.id>2.5</dim.division.id>
 		</dim.division>
 	<dimension.id>2</dimension.id>
 		<dim.division>
@@ -96,16 +120,28 @@
 			<dim.division.id>3.1</dim.division.id>
 		</dim.division>
 		<dim.division>
-			<dim.division.cells>10</dim.division.cells>
+			<dim.division.cells>4</dim.division.cells>
 			<dim.division.start>10.0</dim.division.start>
-			<dim.division.end>20.0</dim.division.end>
+			<dim.division.end>14.0</dim.division.end>
 			<dim.division.id>3.2</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>2</dim.division.cells>
+			<dim.division.start>14.0</dim.division.start>
+			<dim.division.end>16.0</dim.division.end>
+			<dim.division.id>3.3</dim.division.id>
+		</dim.division>
+		<dim.division>
+			<dim.division.cells>4</dim.division.cells>
+			<dim.division.start>16.0</dim.division.start>
+			<dim.division.end>20.0</dim.division.end>
+			<dim.division.id>3.4</dim.division.id>
 		</dim.division>
 		<dim.division>
 			<dim.division.cells>10</dim.division.cells>
 			<dim.division.start>20.0</dim.division.start>
 			<dim.division.end>30.0</dim.division.end>
-			<dim.division.id>3.3</dim.division.id>
+			<dim.division.id>3.5</dim.division.id>
 		</dim.division>
   </dimension>
   <regions>
@@ -149,18 +185,18 @@
       <source_name>AmBe</source_name>
       <source_dim_bounds>
         <source_dim_bounds_dim>0</source_dim_bounds_dim>
-        <source_dim_start>15</source_dim_start>
-        <source_dim_end>15</source_dim_end>
+        <source_dim_start>3</source_dim_start>
+        <source_dim_end>3</source_dim_end>
       </source_dim_bounds>
       <source_dim_bounds>
         <source_dim_bounds_dim>1</source_dim_bounds_dim>
-        <source_dim_start>15</source_dim_start>
-        <source_dim_end>15</source_dim_end>
+        <source_dim_start>3</source_dim_start>
+        <source_dim_end>3</source_dim_end>
       </source_dim_bounds>
       <source_dim_bounds>
         <source_dim_bounds_dim>2</source_dim_bounds_dim>
-        <source_dim_start>15</source_dim_start>
-        <source_dim_end>1</source_dim_end>
+        <source_dim_start>3</source_dim_start>
+        <source_dim_end>3</source_dim_end>
       </source_dim_bounds>
     </source_region>
   </source_geometry>
